@@ -48,9 +48,6 @@ When storing data the plugin uses the failure causes listed in the view called _
 
 ![](http://i.imgur.com/wiiRtvx.jpg)
 
-##Known Bugs
-* The handling of backslashes when editing the failure causes is not working correctly.
-
 ##Tips
 * All data is stored in a folder called _flow-build-stats_ located directly under the main Jenkins folder. This includes data for the failure causes and collected data for the jobs.
 * The collecting of data is separated from the other parts of the plugin, meaning that no data collection is being done when the user is in the main view of the plugin. This means that in order for newly added failure causes to be detected, the data needs to be collected again.
@@ -67,3 +64,4 @@ When storing data the plugin uses the failure causes listed in the view called _
 * The class-structure for the presentation part was hard to get right, since we needed to support multiple levels of subbuilds. In java this is fine, recursion was used, by in jelly it was harder to get it right. In the end a quite inelegant solution was used with one class structure for the jobs and one for the jelly presentation part, where each presentation line is respresented as a java-object. One approach is to use only java and just print the object with jelly, but then there would be a problem with the links for the builds. Anyway, the point is that a better programmer probably would be able to improve the structure significantelly. 
 * Right now the only way to collect data is to have a seperate build-step that collects data from selected jobs. It might be good to at least support another approach where the data is collected when each build is built instead.
 * Support for exporting data, databases etc. There just wasn't time for this but it would be a good feature, both for build data and for failure causes.
+* When adding Failure Cause Patterns there is a bug which complicates the use of backslashes. If you want to make a pattern wich contains a dot (.) for example two backslashes are necessary for the regex to work. But a bug keeps "eating" or adding backslases thus making the regex patter useless. 
